@@ -2,12 +2,6 @@ import sys
 from kafka import KafkaProducer
 from time import sleep
 
-from Const import Const
-
-PORT = Const.PORT
-TOPIC = Const.TOPIC
-IP1 = Const.IP1
-IP2 = Const.IP2
 
 class Sender():
     @staticmethod
@@ -22,11 +16,14 @@ class Sender():
 
 
 def main():
-    host1 = IP1 + ':' + PORT
-    host2 = IP2 + ':' + PORT
+    GUEST="45.32.21.73"
+    PORT="9092"
+    TOPIC="test03"
+
+    host1 = GUEST + ':' + PORT
 
     # 送信用のクライアントを作成
-    producer = KafkaProducer(bootstrap_servers=[host1, host2])
+    producer = KafkaProducer(bootstrap_servers=[host1])
 
     message = sys.argv[-1]
     while True:

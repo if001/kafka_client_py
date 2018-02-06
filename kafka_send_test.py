@@ -6,17 +6,14 @@ import time
 
 PORT = Const.PORT
 TOPIC = Const.TOPIC
-IP1 = Const.IP1
-IP2 = Const.IP2
 
-kafka_servers = [IP1 + ":" + PORT,
-                 IP2 + ":" + PORT]
+kafka_servers = [Const.GCP + ":" + PORT]
+kafka_servers = [Const.RANCHER_CLIENT3 + ":" + PORT]
 
-
-consumer = mod.consummer.Getter.init(kafka_servers)
+print("server:"+ str(kafka_servers) + ", " + Const.TOPIC)
 producer = mod.producer.Sender.init(kafka_servers)
-
+cnt = 0
 while(True):
-    mod.producer.Sender.send_message(producer, TOPIC, "test")
-    time.sleep(1)
-
+    mod.producer.Sender.send_message(producer, TOPIC, str(cnt))
+    time.sleep(3)
+    cnt += 0.1
